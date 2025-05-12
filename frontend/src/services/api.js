@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://scaner-tecnophone.onrender.com';
 
 // Crear instancia de axios
 const api = axios.create({

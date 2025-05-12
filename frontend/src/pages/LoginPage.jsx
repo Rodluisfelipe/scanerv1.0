@@ -59,7 +59,7 @@ const LoginPage = () => {
               </svg>
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">ScanerApp</h1>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">Scaner Tecnophone</h1>
           <p className="text-gray-600">Gestión eficiente de escaneo de códigos</p>
         </div>
         
@@ -147,7 +147,7 @@ const LoginPage = () => {
         
         {/* Footer */}
         <div className="mt-6 text-center text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} ScanerApp. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} Scaner Tecnophone. Todos los derechos reservados.</p>
           <p className="mt-1">v1.0.0</p>
         </div>
       </div>
