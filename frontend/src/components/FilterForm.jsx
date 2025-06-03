@@ -76,6 +76,7 @@ const FilterForm = ({ onFilter }) => {
               <option value="">Todas</option>
               <option value="MercadoLibre">MercadoLibre</option>
               <option value="Deprisa">Deprisa</option>
+              <option value="Servientrega">Servientrega</option>
             </select>
           </div>
           

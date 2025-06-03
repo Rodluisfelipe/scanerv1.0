@@ -95,7 +95,7 @@ const BarcodeTable = ({ filters }) => {
                   className={`px-2 py-1 rounded text-xs font-semibold ${
                     barcode.agency === 'MercadoLibre' 
                       ? 'bg-yellow-100 text-yellow-800' 
-                      : 'bg-blue-100 text-blue-800'
+                      : 'bg-blue-100 text-blue-800' || barcode.agency === 'Servientrega' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
                   }`}
                 >
                   {barcode.agency}

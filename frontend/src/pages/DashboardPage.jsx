@@ -37,12 +37,14 @@ const DashboardPage = () => {
       
       const mercadoLibreCount = records.filter(item => item.agency === 'MercadoLibre').length;
       const deprisaCount = records.filter(item => item.agency === 'Deprisa').length;
+      const servientregaCount = records.filter(item => item.agency === 'Servientrega').length;
       const lastDayCount = records.filter(item => new Date(item.scannedAt) > lastDayDate).length;
       
       setStats({
         total: records.length,
         mercadoLibre: mercadoLibreCount,
         deprisa: deprisaCount,
+        servientrega: servientregaCount,
         lastDay: lastDayCount
       });
     } catch (error) {
@@ -131,7 +133,24 @@ const DashboardPage = () => {
                 </div>
               </div>
             </div>
-            
+            <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 transition-transform duration-300 hover:shadow-md hover:scale-105">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-500 mb-1">Servientrega</p>
+                  <p className="text-2xl font-bold text-gray-800">{loading ? '...' : stats.servientrega}</p>
+                </div>
+                <div className="p-3 bg-blue-100 rounded-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+              </div>
+              <div className="mt-2">
+                <div className="w-full bg-gray-200 rounded-full h-1.5">
+                  <div className="bg-blue-500 h-1.5 rounded-full" style={{ width: `${loading ? 0 : (stats.servientrega / (stats.total || 1) * 100)}%` }}></div>
+                </div>
+              </div>
+            </div>
             <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 transition-transform duration-300 hover:shadow-md hover:scale-105">
               <div className="flex items-center justify-between">
                 <div>

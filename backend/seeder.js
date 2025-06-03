@@ -21,9 +21,9 @@ const createDefaultUser = async () => {
 
     // Crear usuario por defecto
     await User.create({
-      username: 'admin',
-      email: 'tecnophone@technophone.co',
-      password: 'admin123'
+      username: 'tecno',
+      email: 'ventas@technophone.co',
+      password: 'tecno2025()'
     });
 
     console.log('Usuario por defecto creado exitosamente');

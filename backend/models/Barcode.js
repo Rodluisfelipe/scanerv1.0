@@ -9,7 +9,7 @@ const BarcodeSchema = new mongoose.Schema({
   agency: {
     type: String,
     required: [true, 'La agencia es requerida'],
-    enum: ['MercadoLibre', 'Deprisa']
+    enum: ['MercadoLibre', 'Deprisa', 'Servientrega']
   },
   serialNumber: {
     type: String,

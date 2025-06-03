@@ -32,6 +32,8 @@ export const determineAgency = (trackingNumber) => {
     return 'MercadoLibre';
   } else if (cleanNumber.length === 12) {
     return 'Deprisa';
+  }else if (cleanNumber.length === 10) {
+    return 'Servientrega';
   }
   
   return 'Desconocida';

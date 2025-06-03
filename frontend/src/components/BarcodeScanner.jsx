@@ -74,8 +74,8 @@ const BarcodeScanner = () => {
       
       // Validar número de guía
       const cleanNumber = trackingNumber.replace(/\D/g, '');
-      if (cleanNumber.length !== 11 && cleanNumber.length !== 12) {
-        toast.error('El número de guía debe tener 11 dígitos (MercadoLibre) o 12 dígitos (Deprisa)');
+      if (cleanNumber.length !== 11 && cleanNumber.length !== 12 && cleanNumber.length !== 10 ) {
+        toast.error('El número de guía debe tener 11 dígitos (MercadoLibre) , 12 dígitos (Deprisa) o 10 dígitos (Servientrega)');
         return;
       }
       
@@ -197,7 +197,7 @@ const BarcodeScanner = () => {
                   </svg>
                   <div>
                     <span className="text-sm text-gray-600">Agencia detectada:</span>
-                    <span className={`ml-2 px-2 py-1 rounded text-xs font-semibold ${agency === 'MercadoLibre' ? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-800'}`}>{agency}</span>
+                    <span className={`ml-2 px-2 py-1 rounded text-xs font-semibold ${agency === 'MercadoLibre' ? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-800' || agency === 'Servientrega' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>{agency}</span>
                   </div>
                 </div>
               </div>
@@ -233,7 +233,7 @@ const BarcodeScanner = () => {
               </div>
               <div className="flex items-center">
                 <span className="text-sm font-medium text-gray-500 w-32">Agencia:</span>
-                <span className={`px-2 py-1 rounded text-xs font-semibold ${agency === 'MercadoLibre' ? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-800'}`}>{agency}</span>
+                <span className={`px-2 py-1 rounded text-xs font-semibold ${agency === 'MercadoLibre' ? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-800' || agency === 'Servientrega' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>{agency}</span>
               </div>
             </div>
             
@@ -307,7 +307,7 @@ const BarcodeScanner = () => {
                 </div>
                 <div className="flex items-center border-b border-blue-200 pb-2">
                   <span className="font-medium text-gray-700 w-36">Agencia:</span>
-                  <span className={`px-2 py-1 rounded text-xs font-semibold ${agency === 'MercadoLibre' ? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-800'}`}>{agency}</span>
+                  <span className={`px-2 py-1 rounded text-xs font-semibold ${agency === 'MercadoLibre' ? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-800' || agency === 'Servientrega' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>{agency}</span>
                 </div>
                 <div className="flex items-center border-b border-blue-200 pb-2">
                   <span className="font-medium text-gray-700 w-36">Número de Serie:</span>
