@@ -129,7 +129,7 @@ const DashboardPage = () => {
               </div>
               <div className="mt-2">
                 <div className="w-full bg-gray-200 rounded-full h-1.5">
-                  <div className="bg-blue-500 h-1.5 rounded-full" style={{ width: `${loading ? 0 : (stats.deprisa / (stats.total || 1) * 100)}%` }}></div>
+                  <div className="bg-green-500 h-1.5 rounded-full" style={{ width: `${loading ? 0 : (stats.deprisa / (stats.total || 1) * 100)}%` }}></div>
                 </div>
               </div>
             </div>
@@ -139,8 +139,8 @@ const DashboardPage = () => {
                   <p className="text-sm font-medium text-gray-500 mb-1">Servientrega</p>
                   <p className="text-2xl font-bold text-gray-800">{loading ? '...' : stats.servientrega}</p>
                 </div>
-                <div className="p-3 bg-blue-100 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="p-3 bg-green-100 rounded-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="green">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
