@@ -23,10 +23,12 @@ exports.createBarcode = async (req, res, next) => {
       agency = 'MercadoLibre';
     } else if (cleanTrackingNumber.length === 12) {
       agency = 'Deprisa';
+    } else if (cleanTrackingNumber.length === 10) {
+      agency = 'Servientrega';
     } else {
       return res.status(400).json({
         success: false,
-        error: 'Número de guía inválido. Debe tener 11 dígitos (MercadoLibre) o 12 dígitos (Deprisa)'
+        error: 'Número de guía inválido. Debe tener 11 dígitos (MercadoLibre) o 12 dígitos (Deprisa) o 10 dígitos (Servientrega)'
       });
     }
 
