@@ -2,30 +2,16 @@ import { useState, useEffect } from 'react';
 import { getBarcodes, deleteBarcode } from '../services/barcodeService';
 import { toast } from 'react-toastify';
 
-const BarcodeTable = ({ filters }) => {
-  const [barcodes, setBarcodes] = useState([]);
-  const [loading, setLoading] = useState(true);
+const BarcodeTable = ({ barcodes = [], activeFilters = {} }) => {
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
 
+  // Debug: verificar que los props lleguen correctamente
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const result = await getBarcodes(filters);
-        setBarcodes(result.data || []);
-        setError(null);
-      } catch (err) {
-        console.error('Error fetching barcodes:', err);
-        setError('Error al cargar los registros');
-        toast.error('Error al cargar los registros');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [filters]);
+    console.log('BarcodeTable props:', { barcodes, activeFilters });
+    setLoading(false);
+  }, [barcodes, activeFilters]);
 
   const handleDelete = async (id) => {
     if (window.confirm('¿Está seguro que desea eliminar este registro? Esta acción no se puede deshacer.')) {
@@ -33,8 +19,9 @@ const BarcodeTable = ({ filters }) => {
         setDeletingId(id);
         await deleteBarcode(id);
         toast.success('Registro eliminado con éxito');
-        // Actualizar la lista de registros
-        setBarcodes(barcodes.filter(barcode => barcode._id !== id));
+        // Notificar al componente padre que se eliminó un registro
+        // El Dashboard se encargará de actualizar los datos
+        window.location.reload(); // Temporal: recargar para actualizar datos
       } catch (error) {
         console.error('Error al eliminar el registro:', error);
         toast.error('Error al eliminar el registro');
@@ -68,8 +55,19 @@ const BarcodeTable = ({ filters }) => {
 
   if (barcodes.length === 0) {
     return (
-      <div className="text-center p-8 text-gray-500">
-        No se encontraron registros con los filtros seleccionados.
+      <div className="text-center p-8">
+        <div className="text-gray-400 mb-4">
+          <svg className="mx-auto h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        </div>
+        <h3 className="text-lg font-medium text-gray-900 mb-2">No se encontraron registros</h3>
+        <p className="text-gray-500">
+          {activeFilters && Object.keys(activeFilters).length > 0 
+            ? 'No se encontraron registros con los filtros seleccionados. Intenta ajustar los criterios de búsqueda.'
+            : 'No hay registros de escaneo disponibles en este momento.'
+          }
+        </p>
       </div>
     );
   }
@@ -95,7 +93,9 @@ const BarcodeTable = ({ filters }) => {
                   className={`px-2 py-1 rounded text-xs font-semibold ${
                     barcode.agency === 'MercadoLibre' 
                       ? 'bg-yellow-100 text-yellow-800' 
-                      : 'bg-blue-100 text-blue-800' || barcode.agency === 'Servientrega' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
+                      : barcode.agency === 'Servientrega' 
+                        ? 'bg-green-100 text-green-800' 
+                        : 'bg-blue-100 text-blue-800'
                   }`}
                 >
                   {barcode.agency}
@@ -103,7 +103,12 @@ const BarcodeTable = ({ filters }) => {
               </td>
               <td className="py-2 px-4 border-b">{barcode.serialNumber}</td>
               <td className="py-2 px-4 border-b">
-                {new Date(barcode.scannedAt).toLocaleString()}
+                {barcode.scannedAt 
+                  ? new Date(barcode.scannedAt).toLocaleString()
+                  : barcode.createdAt 
+                    ? new Date(barcode.createdAt).toLocaleString()
+                    : 'Fecha no disponible'
+                }
               </td>
               <td className="py-2 px-4 border-b text-center">
                 <button

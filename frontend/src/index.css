@@ -14,6 +14,43 @@
   .animate-shake {
     animation: shake 0.5s ease-in-out;
   }
+
+  /* Estilos para campos de entrada modernos */
+  .input-modern {
+    @apply w-full bg-white/80 backdrop-blur-sm border-2 border-secondary-200 rounded-xl px-4 py-3 text-secondary-800 placeholder-secondary-400 transition-all duration-300;
+    @apply focus:border-primary-500 focus:bg-white focus:shadow-lg focus:ring-primary-500/20;
+    @apply hover:border-secondary-300 hover:bg-white/90;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Estilos para tarjeta con efecto glassmorphism */
+  .card-glass {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl shadow-secondary-900/10;
+    @apply hover:shadow-2xl hover:shadow-secondary-900/20 transition-all duration-500;
+  }
+
+  /* Estilos para el loader de puntos */
+  .loader-dots {
+    @apply flex space-x-1;
+  }
+
+  .loader-dots > div {
+    @apply w-2 h-2 bg-white rounded-full animate-pulse;
+  }
+
+  .loader-dots > div:nth-child(1) { animation-delay: 0s; }
+  .loader-dots > div:nth-child(2) { animation-delay: 0.1s; }
+  .loader-dots > div:nth-child(3) { animation-delay: 0.2s; }
+  .loader-dots > div:nth-child(4) { animation-delay: 0.3s; }
+
+  /* Estilos para botones */
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:shadow-primary-500/25 transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-primary-500/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-lg;
+  }
+
+  .btn-outline {
+    @apply bg-transparent border-2 border-secondary-300 text-secondary-700 font-semibold rounded-xl hover:bg-secondary-100 hover:border-secondary-400 hover:text-secondary-800 transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-secondary-500/20;
+  }
 }
 
 @keyframes fadeIn {
