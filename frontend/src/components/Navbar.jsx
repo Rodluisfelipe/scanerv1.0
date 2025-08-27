@@ -99,8 +99,9 @@ const Navbar = () => {
             <div className="hidden lg:flex items-center space-x-1">
               {navItems.map((item) => {
                 const Icon = item.icon;
+                const isDashboard = item.path === '/dashboard';
                 return (
-                  <Link
+                                    <Link
                     key={item.path}
                     to={item.path}
                     className={`group relative px-4 py-3 rounded-xl transition-all duration-300 ${
@@ -109,20 +110,20 @@ const Navbar = () => {
                           ? 'bg-primary-100 text-primary-700 shadow-lg'
                           : 'bg-white/20 text-white backdrop-blur-sm shadow-lg'
                         : isScrolled
-                          ? 'text-secondary-600 hover:text-primary-600 hover:bg-primary-50'
-                          : 'text-white/80 hover:text-white hover:bg-white/10'
+                          ? isDashboard
+                            ? 'text-white hover:bg-primary-50 dashboard-nav-btn'
+                            : 'text-secondary-600 hover:bg-primary-50'
+                          : isDashboard
+                            ? 'text-white hover:bg-white/10 dashboard-nav-btn'
+                            : 'text-white/80 hover:text-white hover:bg-white/10'
                     }`}
                   >
                     <div className="flex items-center space-x-2">
-                      <Icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                      <Icon className={`h-5 w-5 transition-transform duration-300 group-hover:scale-110 ${isDashboard ? 'text-white' : 'text-current'}`} />
                       <span className="font-medium">{item.label}</span>
                     </div>
                     
-                    {/* Tooltip */}
-                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-secondary-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap">
-                      {item.description}
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-secondary-900"></div>
-                    </div>
+
                   </Link>
                 );
               })}
@@ -194,7 +195,7 @@ const Navbar = () => {
                       <Link
                         to="/dashboard"
                         onClick={() => setIsUserMenuOpen(false)}
-                        className="flex items-center space-x-3 px-3 py-2 rounded-xl text-secondary-700 hover:bg-primary-50 hover:text-primary-700 transition-all duration-200"
+                        className="flex items-center space-x-3 px-3 py-2 rounded-xl text-secondary-700 hover:bg-primary-50 transition-all duration-200"
                       >
                         <BarChart3 className="h-4 w-4" />
                         <span>Dashboard</span>

@@ -111,12 +111,11 @@ const BarcodeTable = ({ barcodes = [], activeFilters = {} }) => {
                 }
               </td>
               <td className="py-2 px-4 border-b text-center">
-                <button
-                  onClick={() => handleDelete(barcode._id)}
-                  disabled={deletingId === barcode._id}
-                  className="p-1 bg-red-100 text-red-600 rounded hover:bg-red-200 transition-colors"
-                  title="Eliminar registro"
-                >
+                                 <button
+                   onClick={() => handleDelete(barcode._id)}
+                   disabled={deletingId === barcode._id}
+                   className="p-1 bg-red-100 text-red-600 rounded hover:bg-red-200 transition-colors"
+                 >
                   {deletingId === barcode._id ? (
                     <svg className="h-5 w-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>

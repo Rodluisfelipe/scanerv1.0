@@ -112,7 +112,6 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
-  cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
@@ -121,6 +120,70 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Eliminar tooltips automáticos del navegador */
+button[title],
+button[data-tooltip],
+button[aria-label] {
+  position: relative;
+}
+
+button[title]::before,
+button[title]::after,
+button[data-tooltip]::before,
+button[data-tooltip]::after,
+button[aria-label]::before,
+button[aria-label]::after {
+  display: none !important;
+}
+
+/* Eliminar tooltips de todos los elementos */
+*[title]::before,
+*[title]::after,
+*[data-tooltip]::before,
+*[data-tooltip]::after,
+*[aria-label]::before,
+*[aria-label]::after {
+  display: none !important;
+}
+
+/* Forzar que el botón de Dashboard no cambie de color */
+a[href="/dashboard"]:hover,
+a[href="/dashboard"]:hover *,
+a[href="/dashboard"]:hover span,
+a[href="/dashboard"]:hover svg {
+  color: inherit !important;
+}
+
+/* Forzar que los elementos dentro del botón de Dashboard mantengan su color */
+.group:hover a[href="/dashboard"] *,
+.group:hover a[href="/dashboard"] span,
+.group:hover a[href="/dashboard"] svg {
+  color: inherit !important;
+}
+
+/* CSS específico para el botón de Dashboard del nav */
+.dashboard-nav-btn,
+.dashboard-nav-btn *,
+.dashboard-nav-btn span,
+.dashboard-nav-btn svg,
+.dashboard-nav-btn:hover,
+.dashboard-nav-btn:hover *,
+.dashboard-nav-btn:hover span,
+.dashboard-nav-btn:hover svg {
+  color: white !important;
+}
+
+.dashboard-nav-btn.group,
+.dashboard-nav-btn.group *,
+.dashboard-nav-btn.group span,
+.dashboard-nav-btn.group svg,
+.dashboard-nav-btn.group:hover,
+.dashboard-nav-btn.group:hover *,
+.dashboard-nav-btn.group:hover span,
+.dashboard-nav-btn.group:hover svg {
+  color: white !important;
 }
 
 @media (prefers-color-scheme: light) {
